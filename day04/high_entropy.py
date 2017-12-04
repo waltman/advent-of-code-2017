@@ -13,8 +13,8 @@ def is_valid(line):
     
 def is_valid2(line):
     s = set()
-    for pw in line.split():
-        key = ''.join(sorted(list(pw)))
+    keys = [''.join(sorted(list(pw))) for pw in line.split()]
+    for key in keys:
         if key in s:
             return 0
         else:
