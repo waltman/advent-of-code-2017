@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 use List::Util qw(min max);
-use feature ":5.26";
+use feature ":5.24";
 use experimental 'signatures';
 
 my $sum1 = 0;
