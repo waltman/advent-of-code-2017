@@ -16,8 +16,8 @@ with open(filename) as f:
             reg[tok[4]] = 0
 
         # create command
-        tok[0] = "reg['{}']".format(tok[0]);
-        tok[4] = "reg['{}']".format(tok[4]);
+        tok[0] = "reg['{}']".format(tok[0])
+        tok[4] = "reg['{}']".format(tok[4])
         tok[1] = "+=" if tok[1] == "inc" else "-="
         cmd = "if {} {} {}: {} {} {}".format(tok[4], tok[5], tok[6], tok[0], tok[1], tok[2])
         exec(cmd)

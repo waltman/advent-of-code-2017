@@ -1,13 +1,13 @@
 #/usr/bin/env python3
 
 # test data
-#myList = [x for x in range(0,5)];
-#LENS_STR = "3,4,1,5";
+#myList = [x for x in range(0,5)]
+#LENS_STR = "3,4,1,5"
 
 # problem data
 myList = [x for x in range(0,256)]
-LENS_STR = "147,37,249,1,31,2,226,0,161,71,254,243,183,255,30,70";
-STD_SUFFIX = [17, 31, 73, 47, 23];
+LENS_STR = "147,37,249,1,31,2,226,0,161,71,254,243,183,255,30,70"
+STD_SUFFIX = [17, 31, 73, 47, 23]
 LENS = [ord(c) for c in LENS_STR] + STD_SUFFIX
 
 p = 0

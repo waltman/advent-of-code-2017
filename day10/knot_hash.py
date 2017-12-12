@@ -1,12 +1,12 @@
 #/usr/bin/env python3
 
 # test data
-#myList = [x for x in range(0,5)];
-#LENS = (3, 4, 1, 5);
+#myList = [x for x in range(0,5)]
+#LENS = (3, 4, 1, 5)
 
 # problem data
 myList = [x for x in range(0,256)]
-LENS = [147,37,249,1,31,2,226,0,161,71,254,243,183,255,30,70];
+LENS = [147,37,249,1,31,2,226,0,161,71,254,243,183,255,30,70]
 
 p = 0
 skip = 0
