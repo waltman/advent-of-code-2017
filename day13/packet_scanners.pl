@@ -15,75 +15,26 @@ while (<>) {
 
 # compute severity
 my $severity = 0;
-my @pos = map {0} 0..$#fw;
-my @dir = map {1} 0..$#fw;
-for my $i (0..$#fw) {
-#    say "$i: @pos";
-    if (defined $fw[$i] && $pos[$i] == 0) {
-#        say "$i";
-        $severity += $i * $fw[$i];
-    }
-    for my $j (0..$#fw) {
-        next unless defined $fw[$j];
-        $pos[$j] += $dir[$j];
-        if ($pos[$j] == $fw[$j]-1) {
-            $dir[$j] = -1;
-        } elsif ($pos[$j] == 0) {
-            $dir[$j] = 1;
-        }
+for my $j (0..$#fw) {
+    if (defined $fw[$j] && $j % (2 * ($fw[$j]-1)) == 0) {
+        $severity += $j * $fw[$j];
     }
 }
-# for my $i (1..$#fw) {
-#     if (defined $fw[$i] && ($i % ($fw[$i]-1) * 2) == 0) {
-#         say "i = $i, fw[i] = $fw[$i], severity = ", $i * $fw[$i];
-#         $severity += $i * $fw[$i];
-#     }
-# }
 
 say "result1: $severity";
 
 # now let's try to get through without getting caught!
 my $delay = 0;
 my $ok = 0;
-until ($ok) {
-    my @pos = map {0} 0..$#fw;
-    my @dir = map {1} 0..$#fw;
-    # delay $delay steps
-    for my $i (1..$delay) {
-        for my $j (0..$#fw) {
-            next unless defined $fw[$j];
-            $pos[$j] += $dir[$j];
-            if ($pos[$j] == $fw[$j]-1) {
-                $dir[$j] = -1;
-            } elsif ($pos[$j] == 0) {
-                $dir[$j] = 1;
-            }
-        }
-    }
-
-    # can we get through?
-    my $caught = 0;
+while (!$ok) {
+    $ok = 1;
     for my $i (0..$#fw) {
-        if (defined $fw[$i] && $pos[$i] == 0) {
-            $caught = 1;
-            say "delay $delay, caught at pos $i";
+        if (defined $fw[$i] && ($delay+$i) % (2 * ($fw[$i]-1)) == 0) {
+            $ok = 0;
             last;
         }
-        for my $j (0..$#fw) {
-            next unless defined $fw[$j];
-            $pos[$j] += $dir[$j];
-            if ($pos[$j] == $fw[$j]-1) {
-                $dir[$j] = -1;
-            } elsif ($pos[$j] == 0) {
-                $dir[$j] = 1;
-            }
-        }
     }
-    if ($caught) {
-        $delay++;
-    } else {
-        $ok = 1;
-    }
+    $delay++ unless $ok;
 }
 
 say "result2: $delay";
