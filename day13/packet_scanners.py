@@ -2,6 +2,9 @@
 from sys import argv
 import re
 
+def caught(fw, i, delay = 0):
+    return fw[i] is not None and (delay + i) % (2 * (fw[i]-1)) == 0
+
 # parse the input
 fw = []
 filename = argv[1]
@@ -17,7 +20,7 @@ with open(filename) as f:
 # compute severity
 severity = 0
 for i in range(len(fw)):
-    if fw[i] is not None and i % (2 * (fw[i]-1)) == 0:
+    if caught(fw, i):
         severity += i * fw[i]
 
 print("result1:", severity)
@@ -28,7 +31,7 @@ ok = False
 while (not ok):
     ok = True
     for i in range(len(fw)):
-        if fw[i] is not None and (delay + i) % (2 * (fw[i]-1)) == 0:
+        if caught(fw, i, delay):
             ok = False
             break
     if not ok:

@@ -15,10 +15,8 @@ while (<>) {
 
 # compute severity
 my $severity = 0;
-for my $j (0..$#fw) {
-    if (defined $fw[$j] && $j % (2 * ($fw[$j]-1)) == 0) {
-        $severity += $j * $fw[$j];
-    }
+for my $i (0..$#fw) {
+    $severity += $i * $fw[$i] if caught(\@fw, $i)
 }
 
 say "result1: $severity";
@@ -29,7 +27,7 @@ my $ok = 0;
 while (!$ok) {
     $ok = 1;
     for my $i (0..$#fw) {
-        if (defined $fw[$i] && ($delay+$i) % (2 * ($fw[$i]-1)) == 0) {
+        if (caught(\@fw, $i, $delay)) {
             $ok = 0;
             last;
         }
@@ -38,3 +36,7 @@ while (!$ok) {
 }
 
 say "result2: $delay";
+
+sub caught($fw, $i, $delay = 0) {
+    return (defined $fw->[$i] && ($delay+$i) % (2 * ($fw->[$i]-1)) == 0);
+}

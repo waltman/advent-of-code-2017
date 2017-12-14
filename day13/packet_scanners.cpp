@@ -6,6 +6,10 @@
 
 using namespace std;
 
+int caught(const vector<int> &fw, const size_t i, const int delay = 0) {
+    return fw[i] >= 0 && (delay + i) % (2 * (fw[i]-1)) == 0;
+}
+
 int main(int argc, char *argv[]) {
     vector<int> fw;
     regex re("(\\d+): (\\d+)");
@@ -29,7 +33,7 @@ int main(int argc, char *argv[]) {
     // compute severity
     int severity = 0;
     for (size_t i = 0; i < fw.size(); i++)
-        if (fw[i] >= 0 && i % (2 * (fw[i]-1)) == 0)
+        if (caught(fw, i))
             severity += i * fw[i];
     printf("result1: %d\n", severity);
 
@@ -39,7 +43,7 @@ int main(int argc, char *argv[]) {
     while (!ok) {
         ok = 1;
         for (size_t i = 0; i < fw.size(); i++) {
-            if (fw[i] >= 0 && (delay + i) % (2 * (fw[i]-1)) == 0) {
+            if (caught(fw, i, delay)) {
                 ok = 0;
                 break;
             }
