@@ -29,7 +29,7 @@ for dance in range(N):
             pgm[pos1] = pgm[pos2]
             pgm[pos2] = tmp
         elif cmd == 'p':
-            d = {v: i for (i,v) in enumerate(pgm)}
+            d = {v: i for i,v in enumerate(pgm)}
             tmp = pgm[d[move[1]]]
             pgm[d[move[1]]] = pgm[d[move[3]]]
             pgm[d[move[3]]] = tmp
