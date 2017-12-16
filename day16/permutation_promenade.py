@@ -32,5 +32,3 @@ for move in moves:
         pgm[d[move[3]]] = tmp
 
 print("result1:", "".join(pgm))
-
-
