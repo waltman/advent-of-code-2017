@@ -27,6 +27,7 @@ int main(int argc, char *argv[]) {
             if (q == buf.end())
                 q = buf.begin();
             cout << "result1: " << *q << endl;
+            break;
         }
     }
 }
