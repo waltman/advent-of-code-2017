@@ -2,15 +2,12 @@
 from sys import argv
 
 def emptyg(size):
-    return [ [ 0 for y in range(size) ] for x in range(size) ]
+    return [ [ '.' for y in range(size) ] for x in range(size) ]
 
 def printg(g):
     for row in range(len(g)):
         for col in range(len(g)):
-            if g[row][col] == 0:
-                print('. ', end='')
-            else:
-                print('# ', end='')
+            print('{} '.format(g[row][col]), end='')
         print('')
     print('')
 
@@ -57,9 +54,8 @@ with open(filename) as f:
         offset = int((SIZE - len(line)) / 2)
         row = lineno + offset
         for i in range(len(line)):
-            if line[i] == '#':
-                col = i + offset
-                g[row][col] = 1
+            col = i + offset
+            g[row][col] = line[i]
         lineno += 1
 
 # run ITER bursts
@@ -68,13 +64,13 @@ d = 'u'
 row,col = int(SIZE/2), int(SIZE/2)
 
 for it in range(ITER):
-    if g[row][col] == 0: # clean
+    if g[row][col] == '.':
         d = turn_left(d)
-        g[row][col] = 1
+        g[row][col] = '#'
         cnt += 1
     else: # infected
         d = turn_right(d)
-        g[row][col] = 0
+        g[row][col] = '.'
 
     drow, dcol = d2move(d)
     row += drow
