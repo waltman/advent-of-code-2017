@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 from sys import argv
 
+def emptyg(size):
+    return [ [ None for y in range(size) ] for x in range(size) ]
+
 def printg(g):
     for row in range(len(g)):
         for col in range(len(g)):
@@ -17,7 +20,7 @@ def g2rule(g):
     return '/'.join([''.join(x) for x in g])
 
 def flip2(g):
-    g2 = [ [ None for y in range(2) ] for x in range(2) ]
+    g2 = emptyg(2)
     g2[0][0] = g[0][1]
     g2[0][1] = g[0][0]
     g2[1][0] = g[1][1]
@@ -26,7 +29,7 @@ def flip2(g):
     return g2
 
 def rot2(g):
-    g2 = [ [ None for y in range(2) ] for x in range(2) ]
+    g2 = emptyg(2)
     g2[0][0] = g[1][0]
     g2[0][1] = g[0][0]
     g2[1][0] = g[1][1]
@@ -35,7 +38,7 @@ def rot2(g):
     return g2
 
 def flip3(g):
-    g3 = [ [ None for y in range(3) ] for x in range(3) ]
+    g3 = emptyg(3)
     g3[0][0] = g[0][2]
     g3[0][1] = g[0][1]
     g3[0][2] = g[0][0]
@@ -49,7 +52,7 @@ def flip3(g):
     return g3
 
 def rot3(g):
-    g3 = [ [ None for y in range(3) ] for x in range(3) ]
+    g3 = emptyg(3)
     g3[0][0] = g[0][2]
     g3[0][1] = g[1][2]
     g3[0][2] = g[2][2]
@@ -89,7 +92,7 @@ for it in range(ITER):
     length = len(g)
     if length % 2 == 0:
         newlen = int(length/2*3)
-        g2 = [ [ None for y in range(newlen) ] for x in range(newlen) ]
+        g2 = emptyg(newlen)
         for row in range(0, length, 2):
             r2 = int(row/2*3)
             for col in range(0, length, 2):
@@ -103,7 +106,7 @@ for it in range(ITER):
                         g2[r2+i][c2+j] = outg[i][j]
     else:
         newlen = int(length/3*4)
-        g2 = [ [ None for y in range(newlen) ] for x in range(newlen) ]
+        g2 = emptyg(newlen)
         for row in range(0, length, 3):
             r2 = int(row/3*4)
             for col in range(0, length, 3):
