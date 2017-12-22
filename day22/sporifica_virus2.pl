@@ -6,12 +6,7 @@ use experimental qw(signatures);
 
 my $ITER = shift @ARGV;
 my $SIZE = 9999;
-my $g;
-for my $row (0..$SIZE-1) {
-    for my $col (0..$SIZE-1) {
-        $g->[$row][$col] = '.';
-    }
-}
+my @g = map { [split '', '.' x $SIZE] } 1..$SIZE;
 
 while (<>) {
     chomp;
@@ -20,7 +15,7 @@ while (<>) {
     my $row = $. - 1 + $OFFSET;
     for my $i (0..$#val) {
         my $col = $i + $OFFSET;
-        $g->[$row][$col] = $val[$i];
+        $g[$row][$col] = $val[$i];
     }
 }
 
@@ -28,19 +23,19 @@ my $cnt = 0;
 my $d = 'u';
 my ($row, $col) = (int($SIZE/2), int($SIZE/2));
 for my $it (1..$ITER) {
-    my $val = $g->[$row][$col];
+    my $val = $g[$row][$col];
     if ($val eq '.') {
         $d = turn_left($d);
-        $g->[$row][$col] = 'W';
+        $g[$row][$col] = 'W';
     } elsif ($val eq '#') {
         $d = turn_right($d);
-        $g->[$row][$col] = 'F';
+        $g[$row][$col] = 'F';
     } elsif ($val eq 'W') {
-        $g->[$row][$col] = '#'; # infected
+        $g[$row][$col] = '#'; # infected
         $cnt++;
     } elsif ($val eq 'F') { # flagged
         $d = turn_reverse($d);
-        $g->[$row][$col] = '.'; # clean
+        $g[$row][$col] = '.'; # clean
     }
     my ($drow, $dcol) = d2move($d);
     $row += $drow;
