@@ -52,7 +52,7 @@ def d2move(d):
         return 0,-1
 
 ITER = int(argv[1])
-SIZE = 9999
+SIZE = 501
 g = emptyg(SIZE)
 
 # parse the input

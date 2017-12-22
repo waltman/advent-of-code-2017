@@ -5,7 +5,7 @@ use feature qw(:5.24);
 use experimental qw(signatures);
 
 my $ITER = shift @ARGV;
-my $SIZE = 9999;
+my $SIZE = 501;
 my @g = map { [split '', '.' x $SIZE] } 1..$SIZE;
 
 while (<>) {

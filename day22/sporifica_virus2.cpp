@@ -60,7 +60,7 @@ const char turn_left(const char d) {
 }
 
 int main(int argc, char *argv[]) {
-    const int SIZE = 9999;
+    const int SIZE = 501;
     int iter = atoi(argv[1]);
     array2d<char> g(SIZE, SIZE, '.');
 
