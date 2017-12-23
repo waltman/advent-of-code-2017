@@ -69,7 +69,9 @@ with open(filename) as f:
 
 # run the program
 ip = 0
-while ip >= 0 and ip < len(pgm):
-    ip = pgm[ip].run(ip, r)
-
-print("result1:", r['mul'])
+while True:
+    try:
+        ip = pgm[ip].run(ip, r)
+    except IndexError:
+        print("result1:", r['mul'])
+        break
