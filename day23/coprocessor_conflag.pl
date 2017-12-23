@@ -49,14 +49,10 @@ while (<>) {
 # run the program
 my $ip = 0;
 my $cnt = 0;
-$r{a} = 1;
+$r{a} = 0;
 while ($ip >= 0 && $ip < @pgm) {
     $ip = $pgm[$ip]->($ip, \%r);
     $cnt++;
-#    if ( $cnt % 10_000_000 == 0) {
-        my $t = time();
-        say "cnt = $cnt, t = $t, $r{a} $r{b} $r{c} $r{d} $r{e} $r{f} $r{g} $r{h}";
-#   }
 }
 
 say "result1: $r{mul}";
