@@ -16,9 +16,7 @@ def make_bridge(target, bridge):
     ports = [ port for port in has[target] if port not in used ]
     if (len(ports) > 0):
         for port in ports:
-            b2 = []
-            b2 += bridge
-            b2.append(port)
+            b2 = bridge + [port]
             t2 = other_side(port, target)
             make_bridge(t2, b2)
     else:
