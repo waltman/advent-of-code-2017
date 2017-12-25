@@ -41,7 +41,7 @@ while (<>) {
     }
 }
 
-my $TAPELEN = 1_000_000;
+my $TAPELEN = 12000;
 my $state = $init_state;
 my @tape = map {0} 1..$TAPELEN;
 my $ip = $TAPELEN/2;
