@@ -44,8 +44,8 @@ int main(int argc, char *argv[]) {
     map<char, State> pgm;
     ifstream infile(argv[1]);
     string rule;
-    char init_state;
-    int max_steps;
+    char init_state = 0;
+    int max_steps = 0;
 
     regex re1("state (.).*after (\\d+)");
     regex re2("state (.).*value (\\d).*the ([^.]+).*state (.).*value (\\d).*the ([^.]+).*state (.)");
