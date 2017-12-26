@@ -92,8 +92,8 @@ int main(int argc, char *argv[]) {
     }
 
     int cnt = 0;
-    for (auto& n : tape) {
+    for (auto& n : tape)
         cnt += n;
-    }
+
     cout << "result1: " << cnt << endl;
 }
